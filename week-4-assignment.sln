@@ -10,7 +10,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLayer.API", "NLayer.API\NLayer.API.csproj", "{54F5E5AC-AFD4-4FAA-A574-AA5C39804AEA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLayer.Data", "NLayer.Data\NLayer.Data.csproj", "{7B707133-EB3D-4F59-8E3B-2921CB324A5B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLayer.Service", "NLayer.Service\NLayer.Service.csproj", "{7E8A2D54-9F08-453C-8E68-357967905494}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54F5E5AC-AFD4-4FAA-A574-AA5C39804AEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54F5E5AC-AFD4-4FAA-A574-AA5C39804AEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54F5E5AC-AFD4-4FAA-A574-AA5C39804AEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54F5E5AC-AFD4-4FAA-A574-AA5C39804AEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B707133-EB3D-4F59-8E3B-2921CB324A5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B707133-EB3D-4F59-8E3B-2921CB324A5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B707133-EB3D-4F59-8E3B-2921CB324A5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B707133-EB3D-4F59-8E3B-2921CB324A5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E8A2D54-9F08-453C-8E68-357967905494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E8A2D54-9F08-453C-8E68-357967905494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E8A2D54-9F08-453C-8E68-357967905494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E8A2D54-9F08-453C-8E68-357967905494}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
