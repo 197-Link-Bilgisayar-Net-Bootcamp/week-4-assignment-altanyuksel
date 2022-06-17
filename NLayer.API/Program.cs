@@ -7,6 +7,7 @@ using NLayer.Data.Models.JWTModels;
 using NLayer.Data.Repositories;
 using NLayer.Service;
 using System.Text;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,6 +53,10 @@ builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<RefreshTokenService>();
 builder.Services.AddScoped<InMemoryCacheService>();
+builder.Services.AddSingleton<IRedisCacheService, RedisCacheService>();
+
+var multiplexer = ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("Redis"));
+builder.Services.AddSingleton<IConnectionMultiplexer>(multiplexer);
 
 var app = builder.Build();
 

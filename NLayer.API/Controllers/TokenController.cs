@@ -4,14 +4,14 @@ using NLayer.Service;
 using NLayer.Service.Dtos;
 
 namespace NLayer.API.Controllers {
-  [Route("api/[controller]")]
+  [Route("api")]
   [ApiController]
   public class TokenController : ControllerBase {
     private readonly TokenService _tokenService;
     public TokenController(TokenService tokenService) {
       this._tokenService = tokenService;
     }
-		[HttpPost]
+		[HttpPost("token")]
 		public IActionResult Authenticate(UserDto user) {
 			User usersdata = new User() { Name = user.Name, Password = user.Password};
 			//TokenService.Authenticate() metodunun tipi Task ise return değerini .Result diyerek alıyoruz.

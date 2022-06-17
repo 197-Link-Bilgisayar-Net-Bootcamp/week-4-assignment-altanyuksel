@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using NLayer.Service;
 
 namespace NLayer.API.Controllers {
-  [Route("api/[controller]")]
+  [Route("api")]
   [ApiController]
   public class ProductsController : ControllerBase {
     private readonly ProductService _productService;

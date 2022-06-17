@@ -3,14 +3,14 @@ using NLayer.Data.Models.JWTModels;
 using NLayer.Service;
 
 namespace NLayer.API.Controllers {
-  [Route("api/[controller]")]
+  [Route("api")]
   [ApiController]
   public class RefreshTokenController : ControllerBase {
 		private readonly RefreshTokenService _refTokenService;
 		public RefreshTokenController(RefreshTokenService tokenService) {
 			this._refTokenService = tokenService;
 		}
-		[HttpPut]
+		[HttpPut("refreshToken")]
 		public async Task< IActionResult> RefreshTokenAsync(Tokens tok) {
 			var token = await _refTokenService.GetRefreshTokenAsync(tok);
 			if (token == null) {
