@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace NLayer.Service {
+namespace NLayer.Service.CacheService {
   public class RedisCacheService : IRedisCacheService {
     private readonly IConnectionMultiplexer _redisCon;
     private readonly IDatabase _cache;

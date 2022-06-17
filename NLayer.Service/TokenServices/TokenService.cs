@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NLayer.Service {
+namespace NLayer.Service.TokenServices {
   public class TokenService {
     private readonly IJWTManagerRepository _jWTManager;
     private readonly GenericRepository<User> _userRepository;

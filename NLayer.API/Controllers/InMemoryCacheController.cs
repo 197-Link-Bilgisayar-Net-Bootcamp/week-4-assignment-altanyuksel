@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using NLayer.Data.Models;
-using NLayer.Service;
+using NLayer.Service.CacheService;
 
 namespace NLayer.API.Controllers {
   [Route("api")]

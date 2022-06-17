@@ -5,9 +5,11 @@ using NLayer.Data;
 using NLayer.Data.Models;
 using NLayer.Data.Models.JWTModels;
 using NLayer.Data.Repositories;
-using NLayer.Service;
 using System.Text;
 using StackExchange.Redis;
+using NLayer.Service.CacheService;
+using NLayer.Service.ProductServices;
+using NLayer.Service.TokenServices;
 
 var builder = WebApplication.CreateBuilder(args);
 

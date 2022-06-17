@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NLayer.Service {
+namespace NLayer.Service.ProductServices {
   public class ProductService {
     private readonly GenericRepository<Product> productRepository;
     private readonly GenericRepository<Category> categoryRepository;

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NLayer.Service;
+using NLayer.Service.ProductServices;
 
 namespace NLayer.API.Controllers {
   [Route("api")]

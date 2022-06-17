@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NLayer.Service;
+using NLayer.Service.CacheService;
 using NLayer.Service.Models;
 
 namespace NLayer.API.Controllers {

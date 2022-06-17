@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NLayer.Service {
+namespace NLayer.Service.CacheService {
   public interface IRedisCacheService {
     Task<string> GetValueAsync(string key);
     Task<bool> SetValueAsync(string key, string value);

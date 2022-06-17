@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NLayer.Data.Models.JWTModels;
-using NLayer.Service;
+using NLayer.Service.TokenServices;
 
 namespace NLayer.API.Controllers {
   [Route("api")]

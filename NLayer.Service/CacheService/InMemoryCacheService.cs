@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NLayer.Service {
+namespace NLayer.Service.CacheService {
   public class InMemoryCacheService {
     private readonly IMemoryCache _cache;
     private readonly string key = "mydata";

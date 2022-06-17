@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NLayer.Service {
+namespace NLayer.Service.TokenServices {
   public class RefreshTokenService {
     private readonly IJWTManagerRepository _jWTManager;
     public RefreshTokenService(IJWTManagerRepository jWTManager) {
