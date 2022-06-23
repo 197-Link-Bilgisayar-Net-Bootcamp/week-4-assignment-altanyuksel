@@ -22,7 +22,7 @@ namespace NLayer.Service.ProductServices {
       this.productFeatureRepository = productFeatureRepository;
       _unitOfWork = unitOfWork;
     }
-    public async Task<Response<List<ProductDto>>> GetAllAsyncDto() {
+    public async Task<Response<List<ProductDto>>> GetAllDtoAsync() {
       var prodList = await productRepository.GetAllAsync();
       var prodDtos = prodList.Select(p => new ProductDto() {
         Id = p.Id,
@@ -43,7 +43,7 @@ namespace NLayer.Service.ProductServices {
         Status = 200
       };
     }
-    public async Task<Response<ProductDto>> GetAsyncDto(int id) {
+    public async Task<Response<ProductDto>> GetDtoAsync(int id) {
       var prodList = await productRepository.GetAsync(id);
       if (prodList == null) {
         return new Response<ProductDto> {
@@ -100,24 +100,7 @@ namespace NLayer.Service.ProductServices {
         Status = 200
       };
     }
-    public async Task<Response<string>> CreateAllAsync(Category category, Product product, ProductFeature productFeature) {
-      await categoryRepository.AddAsync(category);
-      await productRepository.AddAsync(product);
-      await productFeatureRepository.AddAsync(productFeature);
-
-      await _unitOfWork.CommitAsyn();
-
-      //ya da alttaki gibi de kullanılabilir
-      //using (var transaction = _unitOfWork.BeginTransaction()) {
-      //  await categoryRepository.Add(category);
-      //  await productRepository.Add(product);
-      //  await productFeatureRepository.Add(productFeature);
-      //  transaction.Commit();
-      //}
-
-      return new Response<string>();
-    }
-    public async Task<Response<List<Product>>> Update(List<Product> listProduct) {
+    public async Task<Response<List<Product>>> UpdateAsync(List<Product> listProduct) {
       await productRepository.UpdateAysnc(listProduct);
       await _unitOfWork.CommitAsyn();
       return new Response<List<Product>> {

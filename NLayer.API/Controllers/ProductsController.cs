@@ -15,31 +15,24 @@ namespace NLayer.API.Controllers {
     [Authorize]
     [HttpGet]
     public async Task<IActionResult> GetAllAsync() {
-      var response = await _productService.GetAllAsyncDto();
-
+      var response = await _productService.GetAllDtoAsync();
       return new ObjectResult(response) { StatusCode = response.Status };
     }
     [Authorize]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetAsync(int id) {
-      var response = await _productService.GetAsyncDto(id);
-
+      var response = await _productService.GetDtoAsync(id);
       return new ObjectResult(response) { StatusCode = response.Status };
     }
     [Authorize]
     [HttpGet("[action]")]
-    public async Task<IActionResult> GetAllProduct() {
+    public async Task<IActionResult> GetAllProductAsync() {
       var products = await _productService.GetAllAsync();
       return new ObjectResult(products);
     }
-    [HttpPost()]
-    public async Task<IActionResult> CreateProduct([FromBody] List<Product> listProduct) {
-      var response = await _productService.Update(listProduct);
-      return new ObjectResult(response) { StatusCode = response.Status };
-    }
     [Authorize]
     [HttpPost("[Action]")]
-    public async ValueTask<IActionResult> AddProductAsync([FromBody] List<ProductDto> listProd) {
+    public async ValueTask<IActionResult> CreateProductAsync([FromBody] List<ProductDto> listProd) {
       var response = await _productService.CreateProductsAsync(listProd);
       return new ObjectResult(response) { StatusCode = response.Status };
     }
