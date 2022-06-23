@@ -15,8 +15,8 @@ namespace NLayer.Data.Repositories {
     private readonly IConfiguration _iconfiguration;
 		private readonly GenericRepository<User> _userRepository;
 		private readonly UnitOfWork _unitOfWork;
-		private readonly int _tokenExpMinutes = 10;
-		private readonly int _refreshTokenExpMinutes = 30;
+		private readonly int _tokenExpMinutes = 60;
+		private readonly int _refreshTokenExpMinutes = 240;
 		private List<User> _listUserAll = new();
 
 		public JWTManagerRepository(IConfiguration iconfiguration, GenericRepository<User> userRepository, UnitOfWork unitOfWork) {
@@ -48,7 +48,7 @@ namespace NLayer.Data.Repositories {
 			var refreshToken = GenerateRefreshToken();
 			users.RefreshToken = refreshToken;
 			users.RefreshTokenExpiryTime = DateTime.Now.AddMinutes(_refreshTokenExpMinutes);
-			await _userRepository.UpdateAysnc(users);
+			await _userRepository.UpdateAysnc(new List<User>() { users });
       await _unitOfWork.CommitAsyn();
 			return new Tokens { Token = tokenHandler.WriteToken(token), RefreshToken = refreshToken };
 		}
@@ -83,7 +83,7 @@ namespace NLayer.Data.Repositories {
 
 			user.RefreshToken = newRefreshToken;
 			user.RefreshTokenExpiryTime = DateTime.Now.AddMinutes(_refreshTokenExpMinutes); 
-			await _userRepository.UpdateAysnc(user);
+			await _userRepository.UpdateAysnc(new List<User>(){ user });
 			await _unitOfWork.CommitAsyn();
 			tok = new Tokens();
 			tok.Token = new JwtSecurityTokenHandler().WriteToken(newAccessToken);

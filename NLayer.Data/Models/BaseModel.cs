@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace NLayer.Data.Models {
-  public class Category : BaseModel {
-    public string Name { get; set; }
-    public List<Product> Products { get; set; }
+  public class BaseModel {
+    public int Id { get; set; }
+    public DateTime CreatedDate { get; set; }
+    public DateTime UpdatedDate { get; set; }
   }
 }

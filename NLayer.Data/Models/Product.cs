@@ -6,8 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace NLayer.Data.Models {
-  public class Product {
-    public int Id { get; set; } 
+  public class Product : BaseModel {
     public string Name { get; set; }
     public decimal Price { get; set; }
     public decimal Stock { get; set; }

@@ -40,10 +40,12 @@ namespace NLayer.Data.Repositories {
     public List<T> GetAll() {
       return _context.Set<T>().ToList<T>();
     }
-    public async Task<T> UpdateAysnc(T entity) {
-      _context.Entry(entity).State = EntityState.Modified;
+    public async Task<List<T>> UpdateAysnc(List<T> listEntity) {
+      foreach (var item in listEntity) {
+        _context.Entry(item).State = EntityState.Modified;
+      }
       await Task.CompletedTask;
-      return entity;
+      return listEntity;
     }
 
     public T Update2(T entity) {
@@ -77,6 +79,10 @@ namespace NLayer.Data.Repositories {
       list = query.Where(predicate).ToList<T>();
       await Task.CompletedTask;
       return list;
+    }
+    public async Task<List<T>> AddRangeAysnc(List<T> listEntity) {
+      await _context.Set<List<T>>().AddRangeAsync(listEntity);
+      return listEntity;
     }
   }
 }

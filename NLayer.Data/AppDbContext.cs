@@ -16,20 +16,29 @@ namespace NLayer.Data {
     public DbSet<Product> Products { get; set; }
     public DbSet<ProductFeature> ProductFeatures { get; set; }
     public DbSet<User> Users { get; set; }
-    //protected override void OnModelCreating(ModelBuilder modelBuilder) {
-    //  modelBuilder.Entity<User>().HasKey("Id");
-    //  modelBuilder.Entity<List<User>>().HasData(new User {
-    //    Name = "user1",
-    //    Password = "password1"
-    //  },
-    //  new User {
-    //    Name = "user2",
-    //    Password = "password2"
-    //  },
-    //  new User {
-    //    Name = "user3",
-    //    Password = "password3"
-    //  });
-    //}
+    public override int SaveChanges() {
+      SetDates();
+      return base.SaveChanges();
+    }
+    public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default) {
+      SetDates();
+      return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+    }
+    private void SetDates() {
+      ChangeTracker.Entries().ToList().ForEach(e => {
+        if (e.Entity is Product || e.Entity is Category) {
+          var p = e.Entity as BaseModel;
+          if (p != null) {
+            if (e.State == EntityState.Added) {
+              p.CreatedDate = DateTime.Now;
+              p.UpdatedDate = DateTime.Now;
+            }
+            else if (e.State == EntityState.Modified) {
+              p.UpdatedDate = DateTime.Now;
+            }
+          }
+        }
+      });
+    }
   }
 }

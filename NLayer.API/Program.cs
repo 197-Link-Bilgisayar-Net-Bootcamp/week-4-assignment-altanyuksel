@@ -10,6 +10,7 @@ using StackExchange.Redis;
 using NLayer.Service.CacheService;
 using NLayer.Service.ProductServices;
 using NLayer.Service.TokenServices;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,6 +60,11 @@ builder.Services.AddSingleton<IRedisCacheService, RedisCacheService>();
 
 var multiplexer = ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("Redis"));
 builder.Services.AddSingleton<IConnectionMultiplexer>(multiplexer);
+
+//Product entity'sinin içersinde Category navigation class'ý var. Ve de Category classýnýn içersindeki (Category-Product
+//iliþkisindeki 1-N iliþki için eklenen) Product List'i serialize ederken sonsuz döngüye giriyordu, altta eklenen bu ayar bunu çözüyor.
+builder.Services.AddControllers().AddJsonOptions(x =>
+								x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 var app = builder.Build();
 
