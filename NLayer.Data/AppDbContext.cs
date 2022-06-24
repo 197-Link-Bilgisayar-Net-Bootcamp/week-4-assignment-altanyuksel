@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace NLayer.Data {
   public class AppDbContext : DbContext {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {
-        
+
     }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Product> Products { get; set; }
@@ -39,6 +39,16 @@ namespace NLayer.Data {
           }
         }
       });
+    }
+    override protected void OnModelCreating(ModelBuilder modelBuilder) {
+      //Delete Behaviors
+      //Cascade : Ana tablodaki satır silinirse, bağlı tablodaki satırlar da silinir.
+      //Restrict: Ana tablodaki satır silinirse, bağlı tabloda o satırın kaydı varsa hata fırlatır.
+      //SetNull : Ana tablodaki satır silinirse, bağlı tablodaki satırlar da nullable ise değerleri null yapılır.
+      //NoAction: Sadece ana tablodaki satır silinir, bağlı tablodaki satırlara dokunulmaz.
+      modelBuilder.Entity<Category>().HasMany(x => x.Products).WithOne(x => x.Category).HasForeignKey(x => x.CategoryId).OnDelete(DeleteBehavior.Cascade);
+      modelBuilder.Entity<Product>().HasOne(x => x.ProductFeature).WithOne(x => x.Product).HasForeignKey<ProductFeature>(x => x.Id);
+      base.OnModelCreating(modelBuilder);
     }
   }
 }

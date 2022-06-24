@@ -22,9 +22,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMemoryCache();
 
+//builder.Services.AddDbContext<AppDbContext>(options => {
+//  options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConn"), action =>  
+//  action.MigrationsAssembly("NLayer.Data"));
+//});
 builder.Services.AddDbContext<AppDbContext>(options => {
-  options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConn"), action =>  
-  action.MigrationsAssembly("NLayer.Data"));
+	options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConn2"), action =>
+	action.MigrationsAssembly("NLayer.Data"));
 });
 
 builder.Services.AddScoped<GenericRepository<Product>>();

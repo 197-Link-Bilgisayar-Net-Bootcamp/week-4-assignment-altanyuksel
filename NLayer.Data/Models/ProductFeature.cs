@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace NLayer.Data.Models {
   public class ProductFeature {
-    [Key]
-    [ForeignKey("Product")]
     public int Id { get; set; } 
     public int Width { get; set; }
     public int Height { get; set; }
+    public string color { get; set; }
+    public Product Product { get; set; } 
   }
 }

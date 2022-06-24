@@ -94,9 +94,6 @@ namespace NLayer.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("ProductFeatureId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Stock")
                         .HasColumnType("decimal(18,2)");
 
@@ -107,24 +104,23 @@ namespace NLayer.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("ProductFeatureId");
-
                     b.ToTable("Products");
                 });
 
             modelBuilder.Entity("NLayer.Data.Models.ProductFeature", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("Height")
                         .HasColumnType("int");
 
                     b.Property<int>("Width")
                         .HasColumnType("int");
+
+                    b.Property<string>("color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -139,20 +135,29 @@ namespace NLayer.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NLayer.Data.Models.ProductFeature", "ProductFeature")
-                        .WithMany()
-                        .HasForeignKey("ProductFeatureId")
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("NLayer.Data.Models.ProductFeature", b =>
+                {
+                    b.HasOne("NLayer.Data.Models.Product", "Product")
+                        .WithOne("ProductFeature")
+                        .HasForeignKey("NLayer.Data.Models.ProductFeature", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Category");
-
-                    b.Navigation("ProductFeature");
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("NLayer.Data.Models.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("NLayer.Data.Models.Product", b =>
+                {
+                    b.Navigation("ProductFeature")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
